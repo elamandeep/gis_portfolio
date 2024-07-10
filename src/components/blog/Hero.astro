@@ -6,10 +6,8 @@ import FormattedDate from '../FormattedDate.astro'
 interface Props {
 	content: CollectionEntry<'post'>
 }
-
-const {
-	content: { data, render }
-} = Astro.props
+//@ts-ignore
+const {content: { data, render }} = Astro.props
 
 const { remarkPluginFrontmatter } = await render()
 
@@ -62,7 +60,8 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 				<path d='M17.573 18.407l2.834 -2.834a2.025 2.025 0 0 0 0 -2.864l-7.117 -7.116' />
 				<path d='M6 9h-.01' />
 			</svg>
-			{data.tags.map((tag, i) => (
+
+			{data.tags.map((tag: string, i: number) => (
 				<div>
 					<a
 						aria-label={`View more blogs with the tag ${tag}`}

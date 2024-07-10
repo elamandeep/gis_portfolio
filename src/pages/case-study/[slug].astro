@@ -9,14 +9,16 @@ import { getAllPosts } from '@/utils'
 export const getStaticPaths = (async () => {
 	const blogEntries = await getAllPosts()
 	return blogEntries.map((entry) => ({
+		// @ts-ignore
 		params: { slug: entry.slug },
 		props: { entry }
 	}))
 }) satisfies GetStaticPaths
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>
-
+// @ts-ignore
 const { entry } = Astro.props
+// @ts-ignore
 const { Content } = await entry.render()
 ---
 
